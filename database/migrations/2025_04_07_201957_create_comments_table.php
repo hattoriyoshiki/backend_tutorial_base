@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('article_id')->unsigned()->index();
+
+            $table->string('comment')->nullable();
+
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('comments');
     }
 };
+

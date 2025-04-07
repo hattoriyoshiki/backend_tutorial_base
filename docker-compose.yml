@@ -51,7 +51,7 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
-    
+
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         depends_on:
@@ -64,7 +64,7 @@ services:
             PMA_HOST: mysql
         networks:
             - sail
-        
+
     # メールサーバー
     mailpit:
         image: 'axllent/mailpit:latest'
